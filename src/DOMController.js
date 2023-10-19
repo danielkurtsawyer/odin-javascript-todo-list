@@ -1,3 +1,6 @@
+import createFooter from './footer/footer.js';
+import createHeader from './header/header.js'
+
 const pageLoad = () => {
     // create a wrapper div to encapsulate every component
     const wrapper = document.createElement('div');
@@ -6,23 +9,22 @@ const pageLoad = () => {
 
     // create a new folder for a header component - can include all of its dependencies in there 
     // and just call something like wrapper.appendChild(createHeader());
-
-    const header = document.createElement('div');
-    header.classList.add('header');
-    header.textContent = 'To-Do List';
-    wrapper.appendChild(header);
+    wrapper.appendChild(createHeader());
 
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
+    sidebar.textContent = 'Sidebar goes here - will contain the list of project names which users can click on to navigate between projects';
     wrapper.appendChild(sidebar);
 
     const projectView = document.createElement('div');
     projectView.classList.add('project-view');
+    projectView.textContent = 'Project lists will go here, displaying the individual todo items';
     wrapper.appendChild(projectView);
-
-    const footer = document.createElement('div');
-    footer.classList.add('footer');
-    wrapper.appendChild(footer);
+    
+    // create the footer div and add relevent children elements
+    // can also potentially move this code into its own module
+    
+    wrapper.appendChild(createFooter());
 }
 
 export {pageLoad};
