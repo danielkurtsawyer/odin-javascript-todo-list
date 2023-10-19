@@ -1,9 +1,11 @@
-import Project from './project/project.js';
-import ToDoItem from './toDoItem/toDoItem.js';
+import Project from '../project.js';
+import ToDoItem from '../toDoItem.js';
 
 // Although this test code isn't very well structured, I was able to get a comprehensive look 
 // at the behavior of the Project and ToDoItem objects
-// Through simple console.log()'s I was able to debug many errors, and the logic seems to work great
+// Through simple console.log()'s I was able to debug many errors, and the logic seems to work as intended
+
+export default () => {
 
 const project1 = new Project("Project1");
 console.log('Project Object: ', project1);
@@ -41,3 +43,4 @@ console.log(project1.list);
 project1.listDescendingPriority.forEach((item)=>console.log(item.priority));
 
 project1.listAscendingDueDate.forEach((item) => console.log(item.dueDate));
+}
