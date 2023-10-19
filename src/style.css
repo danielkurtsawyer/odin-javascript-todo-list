@@ -1,8 +1,11 @@
 * {
     margin: 0px;
     padding: 0px;
-    border: 1px solid black;
     box-sizing: border-box;
+}
+
+.header, .sidebar, .project-view, .footer{
+    border: 1px dotted black;
 }
 
 .wrapper {
