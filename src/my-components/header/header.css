@@ -1,9 +1,14 @@
 .header {
     padding: 0px 24px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 12px;
-    font-family: sans-serif;
-    font-size: 28px;
+    font-size: 36px;
+}
+
+.header img{
+    filter: invert(46%) sepia(67%) saturate(2006%) hue-rotate(161deg) brightness(94%) contrast(101%);;
+    height: 50%;
+    width: auto;
 }

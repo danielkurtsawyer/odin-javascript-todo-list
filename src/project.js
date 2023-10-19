@@ -76,25 +76,37 @@ export default class Project{
     }
 
     // removes an item from the list array at the index and returns that item
+    // returns null if index is not valid
     removeItem(index){
-        return this._list.splice(index, 1).pop();
+        if(this.validateItemIndex(index)){
+            return this._list.splice(index, 1).pop();
+        } else{
+            return null;
+        }
     }
 
     // every time a user edits an item, they will submit a form that has all of the properties included
-    // we can just use those pro
+    // we can just use those properties to update the item all at once
     editItem(index, title, description, dueDate, priority, checked){
-        this.getItem(index).update(title, description, dueDate, priority, checked);
-        // const editedItem = new ToDoItem();
-        // this._list[index] = editedItem;
+        if(this.validateItemIndex(index)){
+            this.getItem(index).update(title, description, dueDate, priority, checked);
+        } else {
+            return null;
+        }
     }
 
     // returns the ToDoList at that index in the array
     //      returns null if the index does not exist in the array
     getItem(index){
-        if(index >= 0 || index < this._list.length){
+        if(this.validateItemIndex(index)){
             return this._list[index];
         } else{
             return null;
         }
+    }
+
+    // returns true if the index is valid in the list array
+    validateItemIndex(index){
+        return index >= 0 && index < this.listLength ? true : false;
     }
 }
