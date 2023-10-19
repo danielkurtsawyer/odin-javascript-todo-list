@@ -1,5 +1,5 @@
-import createFooter from './footer/footer.js';
-import createHeader from './header/header.js'
+import createFooter from './my-components/footer/footer.js';
+import createHeader from './my-components/header/header.js'
 
 const pageLoad = () => {
     // create a wrapper div to encapsulate every component

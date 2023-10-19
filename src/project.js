@@ -1,4 +1,4 @@
-import ToDoItem from '../toDoItem/toDoItem.js';
+import ToDoItem from './toDoItem.js';
 import { compareDesc, compareAsc } from 'date-fns';
 
 export default class Project{
