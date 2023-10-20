@@ -2,9 +2,14 @@ import DOMController from './DOMController.js';
 import Project from './project.js';
 import ToDoItem from './toDoItem.js';
 
-export default class LogicController{
-    constructor(){
-        this._projects = [new Project('All Items')];
+export default class ProjectController{
+    constructor(defaultName = 'Default Project'){
+        this._projects = [new Project(defaultName)];
+    }
+
+    // returns all projects
+    get projects(){
+        return this._projects;
     }
 
     // returns the project at the requested index in the projects array
@@ -17,12 +22,15 @@ export default class LogicController{
         }
     }
 
+    // validates that the project index exists
+    // lowerBound expands the functionality to allow validation that the index is above a threshold
+    //          since we do not want to delete the default project, 
     validateProjectIndex(index, lowerBound){
-        return index>=lowerBound && index < this.getNumberOfProjects() ? true : false;
+        return index>=lowerBound && index < this.numProjects ? true : false;
     }
 
     // returns the number of different projects currently in memory
-    getNumberOfProjects(){
+    get numProjects(){
         return this._projects.length;
     }
 
@@ -58,6 +66,5 @@ export default class LogicController{
                 newProject.addItem(itemToBeMoved);
             } else return false;
         } else return false;
-        
     }
 }
