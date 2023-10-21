@@ -1,0 +1,16 @@
+.sidebar {
+    height: 100%;
+}
+
+.project-info-container{
+    display: grid;
+    grid-template-columns: 1fr 25px 25px;
+    column-gap: 4px;
+    align-items: center;
+    justify-items: start;
+}
+
+.sidebar img{
+    height:75%;
+    margin: auto;
+}

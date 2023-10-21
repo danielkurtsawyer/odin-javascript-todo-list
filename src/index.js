@@ -5,8 +5,11 @@ import projectControllerTest from './tests/projectControllerTest.js';
 
 import './style.css';
 
-DOMController.pageLoad();
+const projectController = new ProjectController('Default Project');
 
-projectAndToDoItemTest();
-projectControllerTest();
+DOMController.pageLoad(projectController);
+
+// ******** TESTING ********
+// projectAndToDoItemTest();
+// projectControllerTest();
 

@@ -8,7 +8,6 @@
 }
 
 .header img{
-    filter: invert(46%) sepia(67%) saturate(2006%) hue-rotate(161deg) brightness(94%) contrast(101%);;
     height: 50%;
     width: auto;
 }

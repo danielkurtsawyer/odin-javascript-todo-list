@@ -1,4 +1,4 @@
-import DOMController from './DOMController.js';
+import * as DOMController from './DOMController.js';
 import Project from './project.js';
 import ToDoItem from './toDoItem.js';
 
@@ -14,9 +14,9 @@ export default class ProjectController{
 
     // returns the project at the requested index in the projects array
     //      returns null if the index is not valid
-    getProject(index){
-        if(this.validateProjectIndex(index, 0)){
-            return this._projects[index];
+    getProject(projectIndex){
+        if(this.validateProjectIndex(projectIndex, 0)){
+            return this._projects[projectIndex];
         } else {
             return null;
         }
@@ -42,9 +42,9 @@ export default class ProjectController{
     // removes a project from the projects array using the array index
     // NOTE that we do not want to remove the default array at index 0
     // returns the removed project
-    removeProject(index){
-        if(this.validateProjectIndex(index, 1)){
-            return this._projects.splice(index, 1).pop();
+    removeProject(projectIndex){
+        if(this.validateProjectIndex(projectIndex, 1)){
+            return this._projects.splice(projectIndex, 1).pop();
         } else{
             return null;
         }
@@ -66,5 +66,20 @@ export default class ProjectController{
                 newProject.addItem(itemToBeMoved);
             } else return false;
         } else return false;
+    }
+
+    editProjectName(projectIndex){
+        // extract the project-index attribute
+        console.log(projectIndex)
+        // use the index to access the project
+        const project = this.getProject(projectIndex);
+        // change the project name
+        let newName = null;
+        while(!newName){
+            newName = prompt("Change project name: ");
+        }
+        project.name = newName;
+        console.log(project);
+        DOMController.loadSidebar(this);
     }
 }

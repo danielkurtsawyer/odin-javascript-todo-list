@@ -7,7 +7,7 @@ import Project from './project.js';
 import ToDoItem from './toDoItem.js';
 
 
-const pageLoad = () => {
+const pageLoad = (projectController) => {
     // create a wrapper div to encapsulate every component
     const wrapper = document.createElement('div');
     wrapper.classList.add('wrapper');
@@ -19,13 +19,13 @@ const pageLoad = () => {
 
     // will need some kind of module to access the localStorage API here, if data is found then we can parse it into objects
 
-    wrapper.appendChild(loadSidebar());
+    wrapper.appendChild(loadSidebar(projectController));
    
-    wrapper.appendChild(loadProject());
+    wrapper.appendChild(loadProject(projectController));
     
     // create the footer div and add relevent children elements
     // can also potentially move this code into its own module
     wrapper.appendChild(loadFooter());
 }
 
-export {pageLoad};
+export {pageLoad, loadSidebar};

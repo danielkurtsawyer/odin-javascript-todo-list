@@ -5,7 +5,7 @@ import MoveIcon from './icons/move.svg';
 import Project from '../../project';
 import ToDoItem from '../../toDoItem';
 
-export default (Project) => {
+export default (Project, projectIndex = 0) => {
     const projectView = document.createElement('div');
     projectView.classList.add('project-view');
     projectView.textContent = 'Project lists will go here, displaying the individual todo items';
