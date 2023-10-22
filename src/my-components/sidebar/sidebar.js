@@ -24,6 +24,7 @@ export default (projectController) => {
     if(!projectController){
         return sidebarContainer;
     }
+
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
     sidebarContainer.appendChild(sidebar);
@@ -39,6 +40,9 @@ export default (projectController) => {
     const iconAdd = new Image();
     iconAdd.src = PlusIcon;
     addProjectContainer.appendChild(iconAdd);
+
+    // add event listener to call add project
+    addProjectContainer.addEventListener('click', () => projectController.addProject(new Project(prompt('New project name: '))));
 
     sidebar.appendChild(addProjectContainer);
 
@@ -88,8 +92,6 @@ export default (projectController) => {
         addProjectContainer.addEventListener('mouseover', () => addProjectContainer.classList.add('hover'));
         addProjectContainer.addEventListener('mouseout', () => addProjectContainer.classList.remove('hover'));
 
-        // add event listener to call add project
-        addProjectContainer.addEventListener('click', () => projectController.addProject(new Project(prompt('New project name: '))));
         // add event listener to call remove project
         if(i!==0){
             iconDelete.addEventListener('click', (e) => projectController.removeProject(e.target.getAttribute('project-index')));
@@ -111,4 +113,3 @@ function clearSideBar(){
     }
     return sidebarContainer;
 }
-
