@@ -1,5 +1,23 @@
 .sidebar {
     height: 100%;
+    display:grid;
+    grid-template-rows: 42px;
+    grid-auto-rows: 24px;
+    row-gap: 12px;
+}
+
+.add-project-container{
+    background-color: var(--dark-color);
+    display: grid;
+    grid-template-columns: 1fr 25px;
+    width: 200px;
+    margin: auto;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.add-project-container.hover{
+    border: 1px solid #00a4d6;
 }
 
 .project-info-container{

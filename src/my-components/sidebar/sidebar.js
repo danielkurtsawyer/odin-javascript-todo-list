@@ -5,6 +5,7 @@ import Project from '../../project';
 
 import EditIcon from './icons/edit.svg';
 import DeleteIcon from './icons/delete.svg';
+import PlusIcon from './icons/plus.svg';
 
 // NEXT - refactor with sending in the whole projectController rather than just projects
 // this way we can have access to those methods
@@ -27,7 +28,21 @@ export default (projectController) => {
     sidebar.classList.add('sidebar');
     sidebarContainer.appendChild(sidebar);
 
-    // also need to create the add project svg and add event listener to call createProject
+    // also need to create the add project svg and add event listener to call addProject
+    const addProjectContainer = document.createElement('div');
+    addProjectContainer.classList.add('add-project-container');
+    const addProject = document.createElement('div');
+
+    addProject.textContent = 'Add Project';
+    addProjectContainer.appendChild(addProject);
+
+    const iconAdd = new Image();
+    iconAdd.src = PlusIcon;
+    addProjectContainer.appendChild(iconAdd);
+
+    sidebar.appendChild(addProjectContainer);
+
+
     const projects = projectController.projects;
 
     for(let i = 0; i < projects.length; i++){
@@ -54,14 +69,14 @@ export default (projectController) => {
         projectInfoContainer.appendChild(iconEdit);
 
         // can't delete our default project at index 0, so don't add the delete icon
+        const iconDelete = new Image();
         if(i !== 0){
-            const iconDelete = new Image();
             iconDelete.src = DeleteIcon;
             iconDelete.setAttribute('project-index', i);
             projectInfoContainer.appendChild(iconDelete);
         }
 
-        // add event listeners for hover animation on projectName
+        // add event listeners for hover animation on addProjectContainer, projectName and icons
         projectNameElement.addEventListener('mouseover', () => projectNameElement.classList.add('hover'));
         projectNameElement.addEventListener('mouseout', () => projectNameElement.classList.remove('hover'));
         iconEdit.addEventListener('mouseover', () => iconEdit.classList.add('hover'));
@@ -70,7 +85,15 @@ export default (projectController) => {
             iconDelete.addEventListener('mouseover', () => iconDelete.classList.add('hover'));
             iconDelete.addEventListener('mouseout', () => iconDelete.classList.remove('hover'));
         }
+        addProjectContainer.addEventListener('mouseover', () => addProjectContainer.classList.add('hover'));
+        addProjectContainer.addEventListener('mouseout', () => addProjectContainer.classList.remove('hover'));
 
+        // add event listener to call add project
+        addProjectContainer.addEventListener('click', () => projectController.addProject(new Project(prompt('New project name: '))));
+        // add event listener to call remove project
+        if(i!==0){
+            iconDelete.addEventListener('click', (e) => projectController.removeProject(e.target.getAttribute('project-index')));
+        }
         // add event listener to the icons
         iconEdit.addEventListener('click', (e) => projectController.editProjectName(e.target.getAttribute('project-index')));
     }

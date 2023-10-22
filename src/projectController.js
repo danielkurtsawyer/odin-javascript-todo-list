@@ -37,17 +37,22 @@ export default class ProjectController{
     // Adds a project to the end of the projects array
     addProject(project){
         this._projects.push(project);
+        DOMController.loadSidebar(this);
     }
 
     // removes a project from the projects array using the array index
     // NOTE that we do not want to remove the default array at index 0
     // returns the removed project
     removeProject(projectIndex){
+        console.log('removing index ', projectIndex);
         if(this.validateProjectIndex(projectIndex, 1)){
-            return this._projects.splice(projectIndex, 1).pop();
+            const removedProject = this._projects.splice(projectIndex, 1).pop();
+            DOMController.loadSidebar(this);
+            return removedProject;
         } else{
             return null;
         }
+        
     }
 
     // moves an item from one project to another
@@ -79,7 +84,6 @@ export default class ProjectController{
             newName = prompt("Change project name: ");
         }
         project.name = newName;
-        console.log(project);
         DOMController.loadSidebar(this);
     }
 }
