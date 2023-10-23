@@ -37,7 +37,6 @@ export default class ProjectController{
     // Adds a project to the end of the projects array
     addProject(project){
         this._projects.push(project);
-        DOMController.loadSidebar(this);
     }
 
     // removes a project from the projects array using the array index

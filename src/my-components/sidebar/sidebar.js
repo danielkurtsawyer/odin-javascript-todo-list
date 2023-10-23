@@ -1,6 +1,7 @@
 import './sidebar.css';
 import ProjectController from '../../projectController.js';
 import * as DOMController from '../../DOMController.js'
+import * as UserInputController from '../../userInputController.js';
 import Project from '../../project';
 
 import EditIcon from './icons/edit.svg';
@@ -42,7 +43,7 @@ export default (projectController) => {
     addProjectContainer.appendChild(iconAdd);
 
     // add event listener to call add project
-    addProjectContainer.addEventListener('click', () => projectController.addProject(new Project(prompt('New project name: '))));
+    addProjectContainer.addEventListener('click', (e) => UserInputController.openProjectNameForm(e, projectController));
 
     sidebar.appendChild(addProjectContainer);
 
