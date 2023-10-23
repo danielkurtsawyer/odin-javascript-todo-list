@@ -43,7 +43,7 @@ export default (projectController) => {
     addProjectContainer.appendChild(iconAdd);
 
     // add event listener to call add project
-    addProjectContainer.addEventListener('click', (e) => UserInputController.openProjectNameForm(e, projectController));
+    addProjectContainer.addEventListener('click', () => UserInputController.openProjectNameForm(projectController));
 
     sidebar.appendChild(addProjectContainer);
 
@@ -98,7 +98,7 @@ export default (projectController) => {
             iconDelete.addEventListener('click', (e) => projectController.removeProject(e.target.getAttribute('project-index')));
         }
         // add event listener to the icons
-        iconEdit.addEventListener('click', (e) => projectController.editProjectName(e.target.getAttribute('project-index')));
+        iconEdit.addEventListener('click', (e) => UserInputController.openProjectNameForm(projectController, e.target.getAttribute('project-index')));
     }
     
     return sidebarContainer;

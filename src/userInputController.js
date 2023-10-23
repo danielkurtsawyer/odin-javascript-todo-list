@@ -2,7 +2,7 @@ import Project from "./project.js";
 import ProjectController from "./projectController.js";
 import * as DOMController from './DOMController.js'
 
-const openProjectNameForm = (event, projectController, index) => {
+const openProjectNameForm = (projectController, index) => {
     // index parameter lets us know if we are adding or editing a project name
     // we can use this information to dynamically render the dialog depending on 
     //      whether we're adding or editing
@@ -41,6 +41,7 @@ const openProjectNameForm = (event, projectController, index) => {
     form.appendChild(input);
 
     if(index){
+        dialog.addEventListener('submit', (e) => processProjectNameFormEdit(e, dialog, projectController, index));
     } else{
         dialog.addEventListener('submit', (e) => processProjectNameFormAdd(e, dialog, projectController));
     }
@@ -56,10 +57,24 @@ const processProjectNameFormAdd = (e, dialog, projectController) => {
     const projectName = e.target['project-name-input'].value;
     // add a new project with that name
     projectController.addProject(new Project(projectName));
+    // reload the sidebar with the updated projectController
+    DOMController.loadSidebar(projectController);
     // close the dialog
     dialog.close();
-    // reload the sidebar with the updated projetController
-    DOMController.loadSidebar(projectController);
+    
+}
+
+const processProjectNameFormEdit = (e, dialog, projectController, index) => {
+    e.preventDefault();
+    // extract name from the event target
+    const projectName = e.target['project-name-input'].value;
+    if(projectController.editProjectName(index, projectName)){
+        // editProjectName returns true if the project name was successfully changed
+        // reload the sidebar with the updated projectController 
+        DOMController.loadSidebar(projectController);
+    }
+    // close the dialog
+    dialog.close();
 }
 
 export {

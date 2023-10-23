@@ -72,17 +72,18 @@ export default class ProjectController{
         } else return false;
     }
 
-    editProjectName(projectIndex){
-        // extract the project-index attribute
-        console.log(projectIndex)
+    // edits a project's name using its index
+    //      returns true if project exists and name change is successful
+    //      false otherwise
+    editProjectName(projectIndex, projectName){
         // use the index to access the project
         const project = this.getProject(projectIndex);
         // change the project name
-        let newName = null;
-        while(!newName){
-            newName = prompt("Change project name: ");
+        if(project){
+            project.name = projectName;
+            return true;
+        } else {
+            return false;
         }
-        project.name = newName;
-        DOMController.loadSidebar(this);
     }
 }
