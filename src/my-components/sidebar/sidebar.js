@@ -15,7 +15,7 @@ export default (projectController) => {
     console.log('Loading sidebar from the following projectController: ');
     console.table(projectController);
 
-    // clear old sidebar - if returns true then no sidebar container exists and we need to create one
+    // clear old sidebar - if returns null then no sidebar container exists and we need to create one
     let sidebarContainer = clearSideBar();
     if(!sidebarContainer){
         sidebarContainer = document.createElement('div');
@@ -92,6 +92,9 @@ export default (projectController) => {
         }
         addProjectContainer.addEventListener('mouseover', () => addProjectContainer.classList.add('hover'));
         addProjectContainer.addEventListener('mouseout', () => addProjectContainer.classList.remove('hover'));
+
+        // add event listener on the projectNameElement to load project view
+        projectNameElement.addEventListener('click', (e) => DOMController.loadProject(projectController, e.target.getAttribute('project-index')));
 
         // add event listener to call remove project
         if(i!==0){

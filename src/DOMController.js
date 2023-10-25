@@ -28,4 +28,4 @@ const pageLoad = (projectController) => {
     wrapper.appendChild(loadFooter());
 }
 
-export {pageLoad, loadSidebar};
+export {pageLoad, loadSidebar, loadProject};
