@@ -1,3 +1,27 @@
+.project-view{
+    display: grid;
+    grid-auto-rows: 40px;
+}
+
 .to-do-item{
-    display: flex;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 60px repeat(3, 25px);
+    column-gap: 12px;
+    align-items: center;
+    justify-items: start;
+    padding: 6px 12px;
+    background-color: var(--light-color);
+    border-radius: 6px;
+    border: 1px solid var(--dark-color);
+}
+
+.to-do-item div{
+    font-size: 16px;
+    height: 18px;
+}
+
+.to-do-item img{
+    height:75%;
+    margin: auto;
 }
