@@ -270,7 +270,7 @@ const processToDoItemFormAdd = (e, dialog, projectController, projectIndex) => {
 }
 
 const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, itemIndex) => {
-
+    
 }
     
 

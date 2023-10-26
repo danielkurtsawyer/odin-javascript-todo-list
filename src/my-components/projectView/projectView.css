@@ -62,3 +62,7 @@ button {
 button.hover{
     border: 1px solid #00a4d6;
 }
+
+.checked-item{
+    text-decoration: line-through;
+}

@@ -99,6 +99,10 @@ const createItemCard = (item, itemIndex, projectController, projectIndex) => {
     title.classList.add('to-do-title');
     title.textContent = item.title;
     itemContainer.appendChild(title);
+    // if the item has been checked off, add the checked-item class which will add a strikethrough to the text
+    if(item.checked){
+        title.classList.add('checked-item');
+    }
 
     const dueDate = document.createElement('div');
     dueDate.classList.add('to-do-due-date');
@@ -130,6 +134,12 @@ const createItemCard = (item, itemIndex, projectController, projectIndex) => {
     iconDelete.addEventListener('mouseout', () => iconDelete.classList.remove('hover'));
 
     // add event listeners for click to take action
+
+    // info will generate a display on the right with the full task info and provide the functionality to edit info
+
+    // move will generate a modal display prompting the user to select which project they want to move the item to
+
+    // delete will delete the item using the item index
     iconDelete.addEventListener('click', (e) => {
         project.removeItem(itemIndex);
         DOMController.loadProject(projectController, projectIndex);
