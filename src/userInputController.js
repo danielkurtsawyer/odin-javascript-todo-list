@@ -23,6 +23,9 @@ const openProjectNameForm = (projectController, index) => {
 
     dialog.appendChild(form);
 
+    const inputContainer = document.createElement('div');
+    inputContainer.id = 'project-input-container';
+
     const label = document.createElement('label');
     label.setAttribute('for', 'project-name-input')
 
@@ -47,8 +50,9 @@ const openProjectNameForm = (projectController, index) => {
         confirmButton.textContent = 'Edit Project';
     }
 
-    form.appendChild(label);
-    form.appendChild(input);
+    inputContainer.appendChild(label);
+    inputContainer.appendChild(input);
+    form.appendChild(inputContainer);
     form.appendChild(confirmButton);
 
     if(index){
@@ -270,7 +274,7 @@ const processToDoItemFormAdd = (e, dialog, projectController, projectIndex) => {
 }
 
 const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, itemIndex) => {
-    
+
 }
     
 

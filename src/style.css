@@ -95,8 +95,69 @@ img.hover{
     background-color: var(--dark-color);
 }
 
+#project-name-dialog form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
 #project-name-dialog input{
     padding: 2px;
     font-family: 'regular-text';
     background-color: var(--lightest-color);
+}
+
+#project-name-dialog button{
+    background-color: var(--light-color);
+    border: 1px solid black;
+    width: 50%;
+    font-family: 'regular-text';
+}
+
+#item-dialog{
+    margin: auto;
+    padding: 48px;
+    height: 50%;
+    width: 50%;
+    min-width: 300px;
+    background-color: var(--dark-color);
+    border-radius: 24px;
+}
+
+#item-dialog form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+#item-dialog form label{
+    flex: 0 0 80px;
+}
+
+#item-dialog div{
+    flex: 1 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#item-dialog input{
+    background-color: var(--lightest-color);
+}
+
+#item-dialog input[type='text']{
+    font-family: 'regular-text';
+    padding: 2px;
+    flex: 1;
+}
+
+#item-confirm-button{
+    flex: 1 0 30px;
+    background-color: var(--light-color);
+    border: 1px solid black;
+    font-family: 'regular-text';
 }

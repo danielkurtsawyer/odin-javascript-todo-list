@@ -48,7 +48,6 @@ export default class ProjectController{
         console.log('removing index ', projectIndex);
         if(this.validateProjectIndex(projectIndex, 1)){
             const removedProject = this._projects.splice(projectIndex, 1).pop();
-            DOMController.loadSidebar(this);
             return removedProject;
         } else{
             return null;
