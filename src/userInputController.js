@@ -52,6 +52,7 @@ const openProjectNameForm = (projectController, index) => {
     form.appendChild(confirmButton);
 
     if(index){
+        console.log('editing project' + index);
         dialog.addEventListener('submit', (e) => processProjectNameFormEdit(e, dialog, projectController, index));
     } else{
         dialog.addEventListener('submit', (e) => processProjectNameFormAdd(e, dialog, projectController));
@@ -59,7 +60,6 @@ const openProjectNameForm = (projectController, index) => {
 
     form.appendChild(confirmButton);
 
-    console.log(dialog);
     sidebarContainer.appendChild(dialog);
     dialog.showModal();
 };
@@ -72,6 +72,7 @@ const processProjectNameFormAdd = (e, dialog, projectController) => {
     projectController.addProject(new Project(projectName));
     // reload the sidebar with the updated projectController
     DOMController.loadSidebar(projectController);
+    DOMController.loadProject(projectController, projectController.numProjects-1);
     // close the dialog
     dialog.close();
     
@@ -87,7 +88,7 @@ const processProjectNameFormEdit = (e, dialog, projectController, index) => {
         DOMController.loadSidebar(projectController);
         // if the project currently in view is the edited project, update the project view
         if(document.querySelector('.project-view').getAttribute('project-index') == index){
-            DOMController.loadProject(projectController);
+            DOMController.loadProject(projectController, index);
         }
     }
     // close the dialog

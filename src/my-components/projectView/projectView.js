@@ -18,8 +18,10 @@ export default (projectController, projectIndex = 0) => {
     if(!projectView){
         projectView = document.createElement('div');
         projectView.classList.add('project-view');
-        projectView.setAttribute('project-index', projectIndex);
     }
+
+    // add the project index info to the projectView container
+    projectView.setAttribute('project-index', projectIndex);
 
     // fetch the project object
     let project = projectController.getProject(projectIndex);
