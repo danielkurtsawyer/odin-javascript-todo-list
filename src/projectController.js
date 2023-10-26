@@ -7,6 +7,8 @@ export default class ProjectController{
         this._projects = [new Project(defaultName)];
     }
 
+    
+
     // returns all projects
     get projects(){
         return this._projects;

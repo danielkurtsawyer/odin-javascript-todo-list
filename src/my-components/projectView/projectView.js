@@ -7,6 +7,7 @@ import Project from '../../project';
 import ToDoItem from '../../toDoItem';
 
 import { format, isValid } from 'date-fns';
+import * as DOMController from '../../DOMController.js'
 import * as UserInputController from '../../userInputController.js';
 import './projectView.css';
 
@@ -66,7 +67,7 @@ export default (projectController, projectIndex = 0) => {
     const items = project.list;
 
     for(let i = 0; i < items.length; i++){
-        projectView.appendChild(createItemCard(items[i], i));
+        projectView.appendChild(createItemCard(items[i], i, projectController, projectIndex));
     }
 
     return projectView;
@@ -82,7 +83,15 @@ const clearProjectView = () => {
     return projectView;
 }
 
-const createItemCard = (item, itemIndex) => {
+const createItemCard = (item, itemIndex, projectController, projectIndex) => {
+    // fetch the project object
+    let project = projectController.getProject(projectIndex);
+
+    // if no project exists at that index, load default project
+    if(!project){
+        project = projectController.getProject(0);     
+    }
+
     const itemContainer = document.createElement('div');
     itemContainer.classList.add('to-do-item');
 
@@ -119,6 +128,12 @@ const createItemCard = (item, itemIndex) => {
     iconMove.addEventListener('mouseout', () => iconMove.classList.remove('hover'));
     iconDelete.addEventListener('mouseover', () => iconDelete.classList.add('hover'));
     iconDelete.addEventListener('mouseout', () => iconDelete.classList.remove('hover'));
+
+    // add event listeners for click to take action
+    iconDelete.addEventListener('click', (e) => {
+        project.removeItem(itemIndex);
+        DOMController.loadProject(projectController, projectIndex);
+    });
 
     return itemContainer;
 }

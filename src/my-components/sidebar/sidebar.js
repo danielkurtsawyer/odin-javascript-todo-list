@@ -98,7 +98,10 @@ export default (projectController) => {
 
         // add event listener to call remove project
         if(i!==0){
-            iconDelete.addEventListener('click', (e) => projectController.removeProject(e.target.getAttribute('project-index')));
+            iconDelete.addEventListener('click', (e) => {
+                projectController.removeProject(e.target.getAttribute('project-index'));
+                DOMController.loadSidebar(projectController);
+            });
         }
         // add event listener to the icons
         iconEdit.addEventListener('click', (e) => UserInputController.openProjectNameForm(projectController, e.target.getAttribute('project-index')));
