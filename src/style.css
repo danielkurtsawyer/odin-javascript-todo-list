@@ -114,6 +114,11 @@ img.hover{
     border: 1px solid black;
     width: 50%;
     font-family: 'regular-text';
+    height: 30px;
+}
+
+#project-confirm-button.hover{
+    border: 1px solid #00a4d6;
 }
 
 #item-dialog{
@@ -160,4 +165,8 @@ img.hover{
     background-color: var(--light-color);
     border: 1px solid black;
     font-family: 'regular-text';
+}
+
+#item-confirm-button.hover{
+    border: 1px solid #00a4d6;
 }

@@ -38,6 +38,9 @@ const openProjectNameForm = (projectController, index) => {
     const confirmButton = document.createElement('button');
     confirmButton.id = 'project-confirm-button';
     confirmButton.type = 'submit';
+
+    confirmButton.addEventListener('mouseover', () => confirmButton.classList.add('hover'));
+    confirmButton.addEventListener('mouseout', () => confirmButton.classList.remove('hover'));
     
     if(!projectName){
         label.textContent = 'Enter name for your new project: ';
@@ -248,6 +251,9 @@ const openToDoItemForm = (projectController, projectIndex, itemIndex) => {
     } else {
         confirmButton.textContent = 'Add item'
     }   
+
+    confirmButton.addEventListener('mouseover', () => confirmButton.classList.add('hover'));
+    confirmButton.addEventListener('mouseout', () => confirmButton.classList.remove('hover'));
 
     form.appendChild(confirmButton);
 

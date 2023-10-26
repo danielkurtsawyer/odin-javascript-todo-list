@@ -33,8 +33,8 @@ export default (projectController) => {
     // also need to create the add project svg and add event listener to call addProject
     const addProjectContainer = document.createElement('div');
     addProjectContainer.classList.add('add-project-container');
+    
     const addProject = document.createElement('div');
-
     addProject.textContent = 'Add Project';
     addProjectContainer.appendChild(addProject);
 
