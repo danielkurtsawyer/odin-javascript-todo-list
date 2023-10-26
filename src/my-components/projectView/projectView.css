@@ -1,6 +1,32 @@
 .project-view{
     display: grid;
+    grid-template-rows: 60px 60px;
     grid-auto-rows: 40px;
+    row-gap: 12px;
+}
+
+.project-view-name{
+    font-family: 'header-text';
+    font-size: 36px;
+    border-bottom: 1px solid var(--dark-color);
+}
+
+.project-view-header{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 60px 110px;
+    column-gap: 12px;
+    align-items: end;
+    justify-items: start;
+    padding: 6px 12px;
+    font-weight: bold;
+    font-family: 'regular-text';
+}
+
+.project-view-header button{
+    height: 100%;
+    padding: 6px;
+    font-family: 'regular-text';
 }
 
 .to-do-item{
@@ -24,4 +50,15 @@
 .to-do-item img{
     height:75%;
     margin: auto;
+}
+
+button {
+    background-color: var(--dark-color);
+    border-radius: 6px;
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+button.hover{
+    border: 1px solid #00a4d6;
 }

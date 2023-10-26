@@ -7,6 +7,7 @@ import Project from '../../project';
 import ToDoItem from '../../toDoItem';
 
 import { format, isValid } from 'date-fns';
+import * as UserInputController from '../../userInputController.js';
 import './projectView.css';
 
 export default (projectController, projectIndex = 0) => {
@@ -17,14 +18,8 @@ export default (projectController, projectIndex = 0) => {
     if(!projectView){
         projectView = document.createElement('div');
         projectView.classList.add('project-view');
+        projectView.setAttribute('project-index', projectIndex);
     }
-
-    // at the top of the page, we can include a header for the Item title and Item due Date
-    // as well as provide a button to add items to the project 
-    const projectViewHeader = document.createElement('div');
-    projectViewHeader.classList.add('project-view-header');
-
-    
 
     // fetch the project object
     let project = projectController.getProject(projectIndex);
@@ -34,12 +29,42 @@ export default (projectController, projectIndex = 0) => {
         project = projectController.getProject(0);     
     }
 
-    projectView.appendChild(createItemCard(new ToDoItem('test', 'description', '1999-02-05', 1, true), 0));
+    // At the very top of the page, include the name of the project
+    const projectName = document.createElement('div');
+    projectName.textContent = project.name;
+    projectName.classList.add('project-view-name');
+    projectView.appendChild(projectName);
+
+    // at the top of the page, we can include a header for the Item title and Item due Date
+    // as well as provide a button to add items to the project 
+    const projectViewHeader = document.createElement('div');
+    projectViewHeader.classList.add('project-view-header');
+    const tasks = document.createElement('div');
+    tasks.textContent = 'Tasks';
+    projectViewHeader.appendChild(tasks);
+
+    const due = document.createElement('div');
+    due.textContent = 'Due Date';
+    projectViewHeader.appendChild(due);
+
+    const buttonAddToDoItem = document.createElement('button');
+    buttonAddToDoItem.setAttribute('type', 'button');
+    buttonAddToDoItem.setAttribute('project-index', projectIndex);
+    buttonAddToDoItem.textContent = 'Add ToDo Item';
+
+    // add responsive hover
+    buttonAddToDoItem.addEventListener('mouseover', () =>  buttonAddToDoItem.classList.add('hover'));
+    buttonAddToDoItem.addEventListener('mouseout', () => buttonAddToDoItem.classList.remove('hover'));
+    // and also add a click event listener to call the user input controller to handle new task creation
+    buttonAddToDoItem.addEventListener('click', (e) => UserInputController.openToDoItemForm(projectController, e.target.getAttribute('project-index')));
+
+    projectViewHeader.appendChild(buttonAddToDoItem);
+    projectView.appendChild(projectViewHeader);
 
     const items = project.list;
 
     for(let i = 0; i < items.length; i++){
-        projectView.appendChild(createItemCard(item[i], i));
+        projectView.appendChild(createItemCard(items[i], i));
     }
 
     return projectView;

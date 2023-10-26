@@ -5,7 +5,6 @@ export default class ToDoItem{
         this._title = title;
         this._description = description;
         this.dueDate = dueDateString;
-        this.priority = priority;
         this._priority = priority;
         this._checked = checked;
     }

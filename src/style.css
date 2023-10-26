@@ -92,9 +92,11 @@ img.hover{
     padding: 24px;
     font-family: 'regular-text';
     border-radius: 24px;
+    background-color: var(--dark-color);
 }
 
 #project-name-dialog input{
     padding: 2px;
     font-family: 'regular-text';
+    background-color: var(--lightest-color);
 }
