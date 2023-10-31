@@ -87,7 +87,7 @@ img.hover{
     height: 85%;
 }
 
-#project-name-dialog{
+#project-name-dialog, #item-move-dialog{
     margin: auto;
     padding: 24px;
     font-family: 'regular-text';
@@ -95,7 +95,7 @@ img.hover{
     background-color: var(--dark-color);
 }
 
-#project-name-dialog form{
+#project-name-dialog form, #item-move-dialog form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -103,7 +103,7 @@ img.hover{
     gap: 12px;
 }
 
-#project-name-dialog input{
+#project-name-dialog input, #item-move-dialog select{
     padding: 2px;
     font-family: 'regular-text';
     background-color: var(--lightest-color);

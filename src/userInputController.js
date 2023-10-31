@@ -103,7 +103,6 @@ const processProjectNameFormEdit = (e, dialog, projectController, index) => {
 }
 
 const openToDoItemForm = (projectController, projectIndex, itemIndex) => {
-    console.log(projectIndex);
     let item = null;
     // if there is an item index, then we are editing an item
     if(itemIndex){
@@ -282,9 +281,86 @@ const processToDoItemFormAdd = (e, dialog, projectController, projectIndex) => {
 const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, itemIndex) => {
 
 }
+
+const openMoveToDoItemForm = (projectController, itemIndex) => {
+    const projectView = document.querySelector('.project-view');
+    // convert project index from string to int
+    const oldProjectIndex = +projectView.getAttribute('project-index');
+    console.log(oldProjectIndex);
+    // const item = projectController.getProject(oldProjectIndex).getItem(itemIndex);
+
+    // create dialog element
+    const dialog = document.createElement('dialog');
+    dialog.id = 'item-move-dialog';
+    
+    // create form element and append as child to dialog
+    const form = document.createElement('form');
+    dialog.appendChild(form);
+
+    // add the label for project to be moved to
+    const moveLabel = document.createElement('label');
+    moveLabel.setAttribute('for', 'item-move-input');
+    moveLabel.textContent = 'Move item to project: ';
+
+    const moveInput = document.createElement('select');
+    moveInput.setAttribute('name', 'move');
+    moveInput.id = 'item-move-input';
+
+    const projects = projectController.projects;
+    console.log(projects);
+    
+
+    for(let i = 0; i < projects.length; i++){
+        const option = document.createElement('option');
+        option.textContent = projects[i].name;
+        option.value = i;
+        if(i === oldProjectIndex){
+            console.log('old project index selected');
+            option.selected = true;
+        }
+        moveInput.appendChild(option);
+    }
+
+    form.appendChild(moveLabel);
+    form.appendChild(moveInput);
+
+    // add the submit button
+    const confirmButton = document.createElement('button');
+    confirmButton.id = 'item-confirm-button';
+    confirmButton.type = 'submit';
+    confirmButton.textContent = 'Move item'
+    
+    // add hover animation to button
+    confirmButton.addEventListener('mouseover', () => confirmButton.classList.add('hover'));
+    confirmButton.addEventListener('mouseout', () => confirmButton.classList.remove('hover'));
+
+    // add event listener to handle form submission
+    dialog.addEventListener('submit', (e) => processToDoItemFormMove(e, dialog, projectController, oldProjectIndex, itemIndex));
+
+    form.appendChild(confirmButton);
+
+    projectView.appendChild(dialog);
+    dialog.showModal();
+}
+
+const processToDoItemFormMove = (e, dialog, projectController, oldProjectIndex, itemIndex) => {
+    e.preventDefault();
+    const newProjectIndex = e.target['item-move-input'].value;
+    console.log(newProjectIndex);
+
+    // if the new index is different than the old index, then remove the item and add it to the desired project
+    if(newProjectIndex !== oldProjectIndex){
+        const item = projectController.getProject(oldProjectIndex).removeItem(itemIndex);
+        projectController.getProject(newProjectIndex).addItem(item);
+        // also be sure to reload the project view
+        DOMController.loadProject(projectController, newProjectIndex);
+    }
+    dialog.close();
+}
     
 
 export {
     openProjectNameForm,
-    openToDoItemForm
+    openToDoItemForm,
+    openMoveToDoItemForm
 }
