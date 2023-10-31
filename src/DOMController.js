@@ -25,7 +25,7 @@ const pageLoad = (projectController) => {
     
     // create the footer div and add relevent children elements
     // can also potentially move this code into its own module
-    wrapper.appendChild(loadFooter());
+    wrapper.appendChild(loadFooter('https://github.com/danielkurtsawyer/odin-javascript-todo-list'));
 }
 
 export {pageLoad, loadSidebar, loadProject};

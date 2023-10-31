@@ -8,6 +8,9 @@ export default (url) => {
     const link = document.createElement('a');
     link.textContent = 'GitHub';
     link.setAttribute('href', url);
+    // make sure the link opens in a new tab
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
     footer.appendChild(link);
 
     return footer;
