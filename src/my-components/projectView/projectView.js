@@ -136,9 +136,9 @@ const createItemCard = (item, itemIndex, projectController, projectIndex) => {
     // add event listeners for click to take action
 
     // info will generate a display on the right with the full task info and provide the functionality to edit info
-
+    iconInfo.addEventListener('click', (e) => DOMController.loadItemDetails(projectController, e.target.getAttribute('item-index')));
     // move will generate a modal display prompting the user to select which project they want to move the item to
-    iconMove.addEventListener('click', (e) => UserInputController.openMoveToDoItemForm(projectController, e.target.getAttribute('item-index')))
+    iconMove.addEventListener('click', (e) => UserInputController.openMoveToDoItemForm(projectController, e.target.getAttribute('item-index')));
 
     // delete will delete the item using the item index
     iconDelete.addEventListener('click', (e) => {

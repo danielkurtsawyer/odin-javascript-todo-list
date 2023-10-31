@@ -2,6 +2,7 @@ import loadFooter from './my-components/footer/footer.js';
 import loadHeader from './my-components/header/header.js';
 import loadProject from './my-components/projectView/projectView.js';
 import loadSidebar from './my-components/sidebar/sidebar.js';
+import loadItemDetails from './my-components/itemDetails/itemDetails.js';
 
 import Project from './project.js';
 import ToDoItem from './toDoItem.js';
@@ -28,4 +29,4 @@ const pageLoad = (projectController) => {
     wrapper.appendChild(loadFooter('https://github.com/danielkurtsawyer/odin-javascript-todo-list'));
 }
 
-export {pageLoad, loadSidebar, loadProject};
+export {pageLoad, loadSidebar, loadProject, loadItemDetails};

@@ -25,7 +25,9 @@
     box-sizing: border-box;
 }
 
-
+body {
+    background-color: var(--lightest-color);
+}
 
 .wrapper {
     display: grid;
