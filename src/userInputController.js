@@ -33,7 +33,7 @@ const openProjectNameForm = (projectController, index) => {
     input.setAttribute('type', 'text');
     input.required = true;
     input.id = 'project-name-input';
-    input.maxLength = 20;
+    input.maxLength = 15;
 
     const confirmButton = document.createElement('button');
     confirmButton.id = 'project-confirm-button';
