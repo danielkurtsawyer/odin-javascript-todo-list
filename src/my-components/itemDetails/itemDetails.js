@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import ToDoItem from "../../toDoItem.js";
 
 import IconEdit from './icons/edit.svg';
+import IconClose from './icons/x.svg';
 import './itemDetails.css';
 
 export default (projectController, itemIndex) => {
@@ -17,10 +18,16 @@ export default (projectController, itemIndex) => {
     const itemActionsDiv = document.createElement('div');
     itemActionsDiv.classList.add('item-actions');
 
-    const itemEditIcon = document.createElement('div');
-    const modalCloseIcon = document.createElement('div');
-    itemEditIcon.textContent = 'The edit icon goes here';
-    modalCloseIcon.textContent = 'The close icon goes here';
+    const itemEditIcon = new Image();
+    const modalCloseIcon = new Image();
+    itemEditIcon.src = IconEdit;
+    modalCloseIcon.src = IconClose;
+
+    // add event listeners for hovering animation
+    itemEditIcon.addEventListener('mouseover', () => itemEditIcon.classList.add('hover'));
+    itemEditIcon.addEventListener('mouseout', () => itemEditIcon.classList.remove('hover'));
+    modalCloseIcon.addEventListener('mouseover', () => modalCloseIcon.classList.add('hover'));
+    modalCloseIcon.addEventListener('mouseout', () => modalCloseIcon.classList.remove('hover'));
     
     itemActionsDiv.appendChild(itemEditIcon);
     itemActionsDiv.appendChild(modalCloseIcon);
@@ -91,6 +98,20 @@ export default (projectController, itemIndex) => {
 
     dialog.appendChild(itemInfoDiv);
     projectView.appendChild(dialog);
+
+    // add event listeners for the item actions
+    // close dialog
+    modalCloseIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        dialog.close();
+    });
+
+    // edit item
+    itemEditIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        dialog.close();
+        UserInputController.openToDoItemForm(projectController, projectIndex, itemIndex);
+    })
 
     dialog.showModal();
 }

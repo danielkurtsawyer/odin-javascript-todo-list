@@ -236,7 +236,7 @@ const openToDoItemForm = (projectController, projectIndex, itemIndex) => {
         titleInput.value = item.title;
         descriptionInput.value = item.description;
         dueDateInput.value = format(item.dueDate, 'yyyy-MM-dd');
-        priorityInput.children.item(item.priority).selected = true;
+        priorityInput.children.item(item.priority-1).selected = true;
         checkedInput.checked = item.checked;
     } else{
         dialog.addEventListener('submit', (e) => processToDoItemFormAdd(e, dialog, projectController, projectIndex));
@@ -279,7 +279,18 @@ const processToDoItemFormAdd = (e, dialog, projectController, projectIndex) => {
 }
 
 const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, itemIndex) => {
+    console.log('editing!');
+    e.preventDefault();
+    const title = e.target['item-title-input'].value;
+    const description = e.target['item-description-input'].value;
+    const dueDate = e.target['item-due-date-input'].value;
+    const priority = e.target['item-priority-input'].value;
+    const checked = e.target['item-checked-input'].value === "0" ? false : true;
 
+    // update the item attributes
+    projectController.getProject(projectIndex).editItem(itemIndex, title, description, dueDate, priority, checked);
+    DOMController.loadProject(projectController, projectIndex);
+    dialog.close();
 }
 
 const openMoveToDoItemForm = (projectController, itemIndex) => {

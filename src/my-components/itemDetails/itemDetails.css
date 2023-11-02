@@ -1,6 +1,6 @@
-#item-details-dialog{
+#item-details-dialog[open]{
     margin: auto;
-    padding: 48px;
+    padding: 24px;
     height: 50%;
     width: 50%;
     min-width: 300px;
@@ -24,8 +24,17 @@
     column-gap: 12px;
     justify-items: end;
     align-items: center;
+    margin: 24px;
 }
 
 #item-details-dialog div{
     text-align: end;
+}
+
+#item-details-dialog img{
+    height: 85%;
+}
+
+#item-details-dialog img.hover{
+    height: 100%;
 }
