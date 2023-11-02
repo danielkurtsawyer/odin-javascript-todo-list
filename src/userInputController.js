@@ -298,7 +298,6 @@ const openMoveToDoItemForm = (projectController, itemIndex) => {
     // convert project index from string to int
     const oldProjectIndex = +projectView.getAttribute('project-index');
     console.log(oldProjectIndex);
-    // const item = projectController.getProject(oldProjectIndex).getItem(itemIndex);
 
     // create dialog element
     const dialog = document.createElement('dialog');
