@@ -32,3 +32,11 @@
     height:75%;
     margin: auto;
 }
+
+.project-info-container div{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+}

@@ -2,6 +2,7 @@ import './sidebar.css';
 import ProjectController from '../../projectController.js';
 import * as DOMController from '../../DOMController.js'
 import * as UserInputController from '../../userInputController.js';
+import * as LocalStorageController from '../../localStorageController.js';
 import Project from '../../project';
 
 import EditIcon from './icons/edit.svg';
@@ -101,6 +102,13 @@ export default (projectController) => {
             iconDelete.addEventListener('click', (e) => {
                 projectController.removeProject(e.target.getAttribute('project-index'));
                 DOMController.loadSidebar(projectController);
+
+                // if deleted project is current in the project view, reload the projectView with default project
+                if(document.querySelector('.project-view').getAttribute('project-index') === e.target.getAttribute('project-index')){
+                    DOMController.loadProject(projectController);
+                }
+                // update the localStorage
+                LocalStorageController.updateStorage(projectController);
             });
         }
         // add event listener to the icons

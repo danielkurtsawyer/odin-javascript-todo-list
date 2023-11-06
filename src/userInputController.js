@@ -1,6 +1,7 @@
 import Project from "./project.js";
 import ProjectController from "./projectController.js";
-import * as DOMController from './DOMController.js'
+import * as DOMController from './DOMController.js';
+import * as localStorageController from './localStorageController.js';
 import { format } from "date-fns";
 import ToDoItem from "./toDoItem.js";
 
@@ -33,7 +34,7 @@ const openProjectNameForm = (projectController, index) => {
     input.setAttribute('type', 'text');
     input.required = true;
     input.id = 'project-name-input';
-    input.maxLength = 15;
+    input.maxLength = 14;
 
     const confirmButton = document.createElement('button');
     confirmButton.id = 'project-confirm-button';
@@ -83,6 +84,8 @@ const processProjectNameFormAdd = (e, dialog, projectController) => {
     // close the dialog
     dialog.close();
     
+    // update the localStorage
+    localStorageController.updateStorage(projectController);
 }
 
 const processProjectNameFormEdit = (e, dialog, projectController, index) => {
@@ -100,6 +103,9 @@ const processProjectNameFormEdit = (e, dialog, projectController, index) => {
     }
     // close the dialog
     dialog.close();
+
+    // update the localStorage
+    localStorageController.updateStorage(projectController);
 }
 
 const openToDoItemForm = (projectController, projectIndex, itemIndex) => {
@@ -276,6 +282,9 @@ const processToDoItemFormAdd = (e, dialog, projectController, projectIndex) => {
 
     DOMController.loadProject(projectController, projectIndex);
     dialog.close();
+
+    // update the localStorage
+    localStorageController.updateStorage(projectController);
 }
 
 const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, itemIndex) => {
@@ -291,6 +300,9 @@ const processToDoItemFormEdit = (e, dialog, projectController, projectIndex, ite
     projectController.getProject(projectIndex).editItem(itemIndex, title, description, dueDate, priority, checked);
     DOMController.loadProject(projectController, projectIndex);
     dialog.close();
+
+    // update the localStorage
+    localStorageController.updateStorage(projectController);
 }
 
 const openMoveToDoItemForm = (projectController, itemIndex) => {
@@ -366,6 +378,9 @@ const processToDoItemFormMove = (e, dialog, projectController, oldProjectIndex, 
         DOMController.loadProject(projectController, newProjectIndex);
     }
     dialog.close();
+
+    // update the localStorage
+    localStorageController.updateStorage(projectController);
 }
     
 

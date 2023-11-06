@@ -9,6 +9,7 @@ import ToDoItem from '../../toDoItem';
 import { format, isValid } from 'date-fns';
 import * as DOMController from '../../DOMController.js'
 import * as UserInputController from '../../userInputController.js';
+import * as LocalStorageController from '../../localStorageController.js';
 import './projectView.css';
 
 export default (projectController, projectIndex = 0) => {
@@ -144,6 +145,8 @@ const createItemCard = (item, itemIndex, projectController, projectIndex) => {
     iconDelete.addEventListener('click', (e) => {
         project.removeItem(itemIndex);
         DOMController.loadProject(projectController, projectIndex);
+        // update the localStorage
+        LocalStorageController.updateStorage(projectController);
     });
 
     return itemContainer;

@@ -6,9 +6,7 @@ export default class ProjectController{
     constructor(defaultName = 'Default Project'){
         this._projects = [new Project(defaultName)];
     }
-
     
-
     // returns all projects
     get projects(){
         return this._projects;
