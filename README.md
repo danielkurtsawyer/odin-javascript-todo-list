@@ -13,4 +13,6 @@ Additionally, I gained a deeper understanding of CSS through extensive use of Fl
 I also was able to get more practice with webpack and npm, as I had to configure webpack to generate the HTML file, bundle javascript code, and load different assets. I used npm to install the loaders as well as the date-fns library, which was useful for formatting and storing and working with dates. 
 Overall, this was a fun project from start to finish and I believe that I learned a lot over the course of working on this. 
 
+The final aspect of this project was to allow data persistence through the use of the Web Storage API. 
+
 A live demo of this project can be found at: https://danielkurtsawyer.github.io/odin-javascript-todo-list/.
